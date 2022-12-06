@@ -1,11 +1,8 @@
 <template>
   <div class="container">
-    <Header
-      @toggle-add-task="toggleAddTask"
-      title="Task Tracker"
-     :showAddTask="showAddTask"
-    />
-    <Tasks @delete-task = "deleteTask" :tasks="tasks" ></Tasks>
+    <Header title="Task Tracker"/>
+    <AddTask></AddTask>
+    <Tasks  @toggleReminder = "toggleReminder" @delete-task = "deleteTask" :tasks="tasks" ></Tasks>
     <router-view :showAddTask="showAddTask"></router-view>
     <Footer />
   </div>
@@ -14,12 +11,18 @@
 <script>
 import Header from './components/Header'
 import Tasks from './components/Tasks'
+import AddTask from './components/AddTask'
+
+
+
 //import Footer from './components/Footer'
 export default {
   name: 'App',
   components: {
     Header,
     Tasks,
+    AddTask,
+  
    // Footer,
   },
   data() {
@@ -33,6 +36,10 @@ export default {
       this.tasks = this.tasks.filter((task)=> task.id !==id )
       }
     },
+    toggleReminder(id){
+      this.tasks = this.tasks.map((task) => task.id === id ? 
+      {...task, reminder:!task.reminder} :task )
+    }
   },
   created(){
       this.tasks = [
