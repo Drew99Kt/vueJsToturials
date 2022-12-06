@@ -1,39 +1,74 @@
-
 <template>
   <div class="container">
-  <Header title= "Task Tracker"></Header> 
+    <Header
+      @toggle-add-task="toggleAddTask"
+      title="Task Tracker"
+     :showAddTask="showAddTask"
+    />
+    <Tasks @delete-task = "deleteTask" :tasks="tasks" ></Tasks>
+    <router-view :showAddTask="showAddTask"></router-view>
+    <Footer />
   </div>
-  </template>
+</template>
 
-<script lang="js">
-import { Options, Vue } from 'vue-class-component';
-import Header from './components/Header.vue'
-
-
-
-@Options({
+<script>
+import Header from './components/Header'
+import Tasks from './components/Tasks'
+//import Footer from './components/Footer'
+export default {
+  name: 'App',
   components: {
-    Header
+    Header,
+    Tasks,
+   // Footer,
   },
-})
-
-
-export default class App extends Vue {}
+  data() {
+    return {
+      tasks: []
+    }
+  },
+  methods : {
+    deleteTask(id){
+      if(confirm('Are you sure')){
+      this.tasks = this.tasks.filter((task)=> task.id !==id )
+      }
+    },
+  },
+  created(){
+      this.tasks = [
+      {
+          id:1,
+          text: 'Doctors Appointment',
+          day: 'March 1st at 2:30pm',
+          reminder: true,
+        },
+        {
+          id:2,
+          text: 'Lunch with Kim',
+          day: 'March 2st at 1:00pm',
+          reminder: true,
+        },
+        {
+          id:3,
+          text: 'Shop for socks',
+          day: 'March 1st at 5:30pm',
+          reminder: false,
+        },
+      ]
+  }
+}
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: 'Poppins', sans-serif;
 }
-
 .container {
   max-width: 500px;
   margin: 30px auto;
