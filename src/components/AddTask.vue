@@ -37,12 +37,11 @@ import DatePicker from './DatePicker'
     methods: {
       onSubmit(e) {
         e.preventDefault()
-        if (!this.text) {
-          alert('Please add a task')
+        if (!this.text ) {
+          alert('Please add a Task and time')
           return
         }
         const newTask = {
-          // id: Math.floor(Math.random() * 100000),
           text: this.text,
           day: this.day,
           reminder: this.reminder,

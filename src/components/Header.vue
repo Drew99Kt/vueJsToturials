@@ -3,7 +3,7 @@
     <h1>
        {{title}}
     </h1>
-    <Button text="Add Task" color="green"></Button>
+    <Button  :text="showAddTask ?'Close' : 'Add Task'" color="green"></Button>
 </header>
 </template>
 
@@ -16,6 +16,8 @@ import Button from './Button'
         name: 'Header',
         props: {
             title: String,
+            text:String,
+            showAddTask:Boolean,
         },
  
     components: {
