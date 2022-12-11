@@ -1,4 +1,8 @@
 # vuestudy
+```
+This project follows this video
+https://www.youtube.com/watch?v=qZXt1Aom3Cs&t=2s
+```
 
 ## Project setup
 ```

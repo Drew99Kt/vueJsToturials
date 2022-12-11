@@ -13,6 +13,10 @@
         </DatePicker>
      
       </div>
+      <div class="form-control">
+        <label>Description</label>
+        <input type="text" v-model="descBox" name="descBox" placeholder="Any information needed for this reminder" />
+      </div>
       <div class="form-control form-control-check">
         <label>Set Reminder</label>
         <input type="checkbox" v-model="reminder" name="reminder" />
@@ -32,6 +36,7 @@ import DatePicker from './DatePicker'
         text: '',
         day: '',
         reminder: false,
+        descBox: ''
       }
     },
     methods: {
@@ -45,11 +50,13 @@ import DatePicker from './DatePicker'
           text: this.text,
           day: this.day,
           reminder: this.reminder,
+          desc: this.descBox
         }
         this.$emit('add-task', newTask)
         this.text = ''
         this.day = ''
-        this.reminder = false
+        this.reminder = false,
+        this.descBox
       },
     },
     components: {
