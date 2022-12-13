@@ -1,11 +1,8 @@
 module.exports = {
-
-  publicPath: process.env.NODE_ENV === 'production'
-  ? '/vueJsToturials/' : '/',
   devServer: {
     proxy: {
       '^/api': {
-        target: 'http://localhost:5000',
+        target: 'https://api.predic8.de',
         changeOrigin: true,
         logLevel: 'debug',
         pathRewrite: { '^/api': '/' },

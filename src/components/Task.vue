@@ -1,14 +1,14 @@
 <template>
     <div @dblclick="$emit('toggleReminder', task.id)" :class = "[task.reminder ? 'reminder' : '', 'task']">
-    
-      <b>Task Title<i @click="$emit('delete-task', task.id)" class="fas fa-times"></i>
-</b>
-      <p>{{ task.text}} 
+      
+      <b>Order Url <i @click="$emit('delete-task', task.order_url)" class="fas fa-times"></i>
+       </b>
+      <p>{{ task.order_url}} 
       </p>
-    <b >Description</b>
-    <p> {{task.desc}}</p>
-    <b>Date</b>
-    <p>{{ task.day }}</p>
+    <b >Order state</b>
+    <p> {{task.state}}</p>
+    <b> Created Date</b>
+    <p>{{ task.createdAt}}</p>
 </div>
 </template>
 
@@ -47,16 +47,15 @@ export default {
  p {
 
   align-items: center;
-   display: flex;
-  justify-content: space-between;
+  
 }
 
 
 b{
- 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   border-width: 5px;
   border-top: 0px;
   border-right: 0px;

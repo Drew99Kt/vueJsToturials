@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Header :showAddTask="showAddTask" text="t" @click="btnClicked" title="Task Tracker" />
+    <Header :showAddTask="showAddTask" text="t" @click="btnClicked" title="Order Tracker" />
     <div v-show="showAddTask">
       <AddTask @add-task = "addTask" />
     </div>
@@ -45,7 +45,7 @@ export default {
       
     
     if(confirm('Are you sure')){
-      const res = await fetch(`api/tasks/${id}`,{
+      const res = await fetch(`api/${id}`,{
        method: 'DELETE',
        headers: {
          'Content-type':'application/json',
@@ -75,7 +75,7 @@ export default {
       {...task, reminder:data.reminder} :task )
     },
    async addTask(task){
-     const res = await fetch('api/tasks',{
+     const res = await fetch('api/shop/orders',{
        method: 'POST',
        headers: {
          'Content-type':'application/json',
@@ -87,11 +87,11 @@ export default {
       this.tasks = [...this.tasks, data]
     },
     async fetchTasks(){
-      const res= await fetch('api/tasks')
+      const res= await fetch('api/shop/orders/')
 
       const data = await res.json()
 
-      return data
+      return data.orders
     },
     async fetchTask(id){
       const res= await fetch(`api/tasks/${id}`)
