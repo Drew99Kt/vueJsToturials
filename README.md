@@ -1,7 +1,8 @@
 # vuestudy
 ```
-This project follows this video
-https://www.youtube.com/watch?v=qZXt1Aom3Cs&t=2s
+This repo runs a small web app you can view here
+https://drew99kt.github.io/vueJsToturials/
+
 ```
 
 ## Project setup
@@ -24,9 +25,24 @@ npm run serve
 npm run build
 ```
 
+### Compiles and deploys to production
+```
+npm run deploy
+```
+
+
+### Project credit
+```
+
+
+Backend used in this project
+https://api.predic8.de/shop/docs#/
+
+Video used for help building this project
+https://www.youtube.com/watch?v=qZXt1Aom3Cs&t=2s
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-### This project is based on 
-https://www.youtube.com/watch?v=qZXt1Aom3Cs
