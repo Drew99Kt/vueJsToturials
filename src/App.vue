@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Header :showAddTask="showAddTask" text="t" @click="btnClicked" title="Order Tracker" />
+    <Header :showAddTask="showAddTask" text="t" @click="btnClicked" title="Store Products" />
     <div v-show="showAddTask">
       <AddTask @add-task = "addTask" />
     </div>
@@ -15,7 +15,7 @@ import Header from './components/Header'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
 
-
+const api ="https://api.predic8.de"
 
 //import Footer from './components/Footer'
 export default {
@@ -42,27 +42,28 @@ export default {
      
     },
    async deleteTask(id){
-      
+      console.log(id)
     
     if(confirm('Are you sure')){
-      const res = await fetch(`api/${id}`,{
+      const res = await fetch(`${api}${id}`,{
        method: 'DELETE',
        headers: {
          'Content-type':'application/json',
        },
      })
-     const data = await res.json(id)
-     res.status === 200 ? (this.tasks = this.tasks.filter((task)=> task.id !==id )) :
-     alert ("Error Delete Failed")
-
-      
+   
+ 
+     res.status === 200 ? (this.tasks = this.tasks.filter((task)=> task.product_url !==id )) :
+     alert ("Error Delete Failed") 
+   
+     
       }
     },
     async toggleReminder(id){
       const taskToToggle = await this.fetchTask(id)
       const updTask = {...taskToToggle, reminder : !taskToToggle.reminder}
       
-      const res = await fetch(`api/tasks/${id}`,{
+      const res = await fetch(`${api}/tasks/${id}`,{
        method: 'PUT',
        headers: {
          'Content-type':'application/json',
@@ -75,7 +76,10 @@ export default {
       {...task, reminder:data.reminder} :task )
     },
    async addTask(task){
-     const res = await fetch('api/shop/orders',{
+    
+    
+    console.log(task)
+    const res = await fetch(`${api}/shop/products/`,{
        method: 'POST',
        headers: {
          'Content-type':'application/json',
@@ -85,16 +89,17 @@ export default {
      
      const data = await res.json()
       this.tasks = [...this.tasks, data]
+ 
     },
     async fetchTasks(){
-      const res= await fetch('api/shop/orders/')
+      const res= await fetch(`${api}/shop/products/?page=1&limit=100`)
 
       const data = await res.json()
 
-      return data.orders
+      return data.products
     },
     async fetchTask(id){
-      const res= await fetch(`api/tasks/${id}`)
+      const res= await fetch(`${api}${id}`)
 
       const data = await res.json()
 

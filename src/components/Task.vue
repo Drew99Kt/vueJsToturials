@@ -1,14 +1,12 @@
 <template>
-    <div @dblclick="$emit('toggleReminder', task.id)" :class = "[task.reminder ? 'reminder' : '', 'task']">
-      
-      <b>Order Url <i @click="$emit('delete-task', task.order_url)" class="fas fa-times"></i>
-       </b>
-      <p>{{ task.order_url}} 
+    <div @dblclick="$emit('toggleReminder', task.product_url)" :class = "[task.reminder ? 'reminder' : '', 'task']">
+      <b >Product Name<i @click="$emit('delete-task', task.product_url)" class="fas fa-times"></i></b>
+    <p> {{task.name}}</p>
+      <b>Product url</b>
+      <p>{{ task.product_url}} 
       </p>
-    <b >Order state</b>
-    <p> {{task.state}}</p>
-    <b> Created Date</b>
-    <p>{{ task.createdAt}}</p>
+   
+
 </div>
 </template>
 

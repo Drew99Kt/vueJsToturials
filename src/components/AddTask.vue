@@ -1,59 +1,84 @@
 <template>
     <form @submit="onSubmit" class="add-form">
       <div class="form-control">
-        <label>Task</label>
-        <input type="text" v-model="text" name="text" placeholder="Add Task" />
+        <label>Name</label>
+        <input type="text" v-model="name" name="text" placeholder="Bag of apples" />
       </div>
+      
       <div class="form-control">
-        <label>Day & Time</label>
-        <DatePicker   type="text"
-          v-model="day"
-          name="day"
-          placeholder="Add Day & Time"> 
-        </DatePicker>
-     
+        <label>Price</label>
+        <input type="text" v-model="price" name="text" placeholder="5.99" />
       </div>
-      <div class="form-control form-control-check">
-        <label>Set Reminder</label>
-        <input type="checkbox" v-model="reminder" name="reminder" />
-      </div>
-  
-      <input type="submit" value="Save Task" class="btn btn-block" />
+
+      <div class="form-control">
+      
+        <DropDown @category1 = "category1" @category2 = "category2" v-model="category_url" ></DropDown>
+        </div>
+
+         
+      <!-- <div class="form-control">
+        <label>Vendor</label>
+        <DropDown v-model="vendor_url"></DropDown>
+    </div> -->
+
+      <input type="submit" value="Save Product" class="btn btn-block" />
     </form>
   </template>
   
   <script>
 import DatePicker from './DatePicker'
+import DropDown from './DropDown'
+var Category1
+var Category2
+
+
 
   export default {
     name: 'AddTask',
     data() {
       return {
-        text: '',
-        day: '',
-        reminder: false,
+        name: '',
+        price: '',
+        category_url: '',
+        vendor_url: '',
       }
     },
     methods: {
+    
+
+        
+      category1(val){
+        this.Category2=val
+        console.log(val)
+      },
+      category2(val){
+        this.Category1=val
+        console.log(val)
+      },
+
       onSubmit(e) {
         e.preventDefault()
-        if (!this.text ) {
-          alert('Please add a Task and time')
+        if (!this.name ) {
+          alert('Product name is required')
+   
           return
         }
         const newTask = {
-          text: this.text,
-          day: this.day,
-          reminder: this.reminder,
+          name: this.name,
+          price: this.price,
+          category_url: this.Category1,
+          vendor_url: this.Category2,
         }
         this.$emit('add-task', newTask)
-        this.text = ''
-        this.day = ''
-        this.reminder = false
+        this.name = ''
+        this.price = ''
+        this.category_url = '',
+        this.vendor_url = ''
       },
     },
     components: {
-        DatePicker
+        DatePicker,
+        DropDown
     }
   }
   </script>

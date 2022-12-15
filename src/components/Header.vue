@@ -3,7 +3,7 @@
     <h1>
        {{title}}
     </h1>
-    <Button  :text="showAddTask ?'Close' : 'Add Task'" color="green"></Button>
+    <Button  :text="showAddTask ?'Close' : 'Add Product'" color="green"></Button>
 </header>
 </template>
 
