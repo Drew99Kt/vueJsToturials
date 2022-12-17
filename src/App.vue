@@ -1,20 +1,26 @@
 <template>
-  <div class="container">
-    <Header :showAddTask="showAddTask" text="t" @click="btnClicked" title="Store Products" />
-    <div v-show="showAddTask">
-      <AddTask @add-task = "addTask" />
-    </div>
-    <Tasks  @toggleReminder = "toggleReminder" @delete-task = "deleteTask" :tasks="tasks" ></Tasks>
+<div id="full">
 
-    
+  <div class="container">
+     <div id="sidebar"><SideBar ></SideBar></div>
+    <div id="container2" >
+     <Header :showAddTask="showAddTask" text="t" @click="btnClicked" title="Store Products" />
+      <div v-show="showAddTask">
+       <AddTask @add-task = "addTask" />
+      </div>
+        <Tasks  @toggleReminder = "toggleReminder" @delete-task = "deleteTask" :tasks="tasks" ></Tasks>
+
+  
+    </div>
   </div>
+</div>
 </template>
 
 <script>
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
-
+import SideBar from './components/SideBar'
 const api ="https://api.predic8.de"
 
 //import Footer from './components/Footer'
@@ -24,6 +30,7 @@ export default {
     Header,
     Tasks,
     AddTask,
+    SideBar
   
    // Footer,
   },
@@ -124,13 +131,19 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 .container {
-  max-width: 500px;
+  width: 1000px;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
   border: 1px solid steelblue;
-  padding: 30px;
+flex: 1;
   border-radius: 5px;
+  
+  display: flex;
+
+}
+#container2{
+width: 2000px;
 }
 .btn {
   display: inline-block;
@@ -154,5 +167,25 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+}
+#full{
+
+display: flex;
+}
+
+#sidebar{
+  max-width: 10rem;
+ background-color: rgb(161, 205, 205);
+flex: 1;
+  min-height: 300px;
+  border-right: 1px solid steelblue;
+  border-bottom: 1px solid steelblue;
+  padding: 10px;
+  border-radius: 0px;
+  
+  margin-right: 10px;
+  
+  
+
 }
 </style>
