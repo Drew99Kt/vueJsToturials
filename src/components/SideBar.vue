@@ -2,11 +2,11 @@
 
 
 <div id="sidebarContainer">
-    <Button text="Products" color="grey"></Button>
-    <Button text="Vendors" color="grey"></Button>
-    <Button text="Orders" color="grey"></Button>
-    <Button text="Customers" color="grey"></Button>
-    <Button text="Category" color="grey"></Button>
+    <Button text="Products" id="btn1" :color="btn1 ? 'grey' : 'green'" ></Button>
+    <Button text="Vendors" id="btn2" :color="btn2 ? 'grey' : 'green'"></Button>
+    <Button text="Orders" id="btn3" :color="btn3 ? 'grey' : 'green'"></Button>
+    <Button text="Customers" id="btn4" :color="btn4 ? 'grey' : 'green'"></Button>
+    <Button text="Category" id="btn5" :color="btn5 ? 'grey' : 'green'"></Button>
 
 </div>
 </template>
@@ -20,7 +20,12 @@ import Button from './Button'
         props: {
             title: String,
             text:String,
-            showAddTask:Boolean,
+            btn1:Boolean,
+            btn2:Boolean,
+            btn3:Boolean,
+            btn4:Boolean,
+            btn5:Boolean,
+
         },
  
     components: {
